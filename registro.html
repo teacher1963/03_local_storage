@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Registro</title>
+  <meta name="description" content="Registro de Usuario" />
+  <link rel="stylesheet" href="localStorage.css" />
+</head>
+<style></style>
+
+<body>
+  <div class="container">
+    <section>
+      <div class="cabecera">
+        <h2>REGISTRO</h2>
+        <a href="logueo.html">LOGUEO</a>
+      </div>
+      <article>
+        <p>
+          <input type="text" id="inpt1" value="" />
+          <label for="">User</label>
+        </p>
+        <p>
+          <input type="password" id="inpt2" value="" />
+          <label for="">Password</label>
+        </p>
+      </article>
+      <div>
+        <input type="button" value="REGISTRO" id="btn1" />
+        <input type="button" value="BORRAR REGISTRO" id="btn3" />
+        <input type="button" value="BORRAR TODO" id="btn4" />
+      </div>
+      <div id="result"></div>
+    </section>
+
+  </div>
+
+  <script>
+    var botonRegistro = document.getElementById("btn1");
+    botonRegistro.addEventListener("click", registrar, false);
+
+    var botonRegistro = document.getElementById("btn3");
+    botonRegistro.addEventListener("click", borrarRegistro, false);
+
+    var botonRegistro = document.getElementById("btn4");
+    botonRegistro.addEventListener("click", borrarTodo, false);
+
+
+    function registrar() {
+
+
+      var user = document.getElementById('inpt1').value;
+      var password = document.getElementById('inpt2').value;
+
+
+      var registro = new Object();
+
+      registro.usuario = user; //   user es el valor recogido en el input
+      registro.clave = password; //  password es el valor recogido en el input
+
+      var resultado = "";
+      for (const key in registro) {
+        resultado +=
+          "los valoresss son " + key + "  -  " + registro[key] + "<br>";
+      }
+
+      var registroCadena = JSON.stringify(registro);
+      //alert(registro + " es el objeto creado");
+     // alert(registroCadena + ' \n es el objeto "parseado" a cadena');
+      localStorage.setItem("registrarse", registroCadena);
+
+      document.querySelector("#result").innerHTML = registroCadena
+
+    }
+
+
+    function borrarRegistro() {
+      localStorage.removeItem("registrarse");
+    }
+
+    function borrarTodo() {
+      localStorage.clear();
+    }
+  </script>
+</body>
+
+</html>
