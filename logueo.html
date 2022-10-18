@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Logueo</title>
+  <meta name="description" content="Logueo de Usuario" />
+  <link rel="stylesheet" href="localStorage.css" />
+</head>
+<style></style>
+
+<body>
+  <div class="container">
+    <section>
+      <div class="cabecera">
+        <h2>LOGUEO</h2>
+        <a href="registro.html">REGISTRO</a>
+      </div>
+      <article>
+        <p>
+          <input type="text" id="inpt1" value="" />
+          <label for="inpt1">User</label>
+        </p>
+        <p>
+          <input type="password" id="inpt2" value="" />
+          <label for="inpt2">Password</label>
+        </p>
+      </article>
+      <div>
+        <input type="button" value="LOGUEO" id="btn2" />
+        <input type="button" value="BORRAR REGISTRO" id="btn3" />
+        <input type="button" value="BORRAR TODO" id="btn4" />
+      </div>
+      <div id="result"></div>
+    </section>
+
+  </div>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script>
+    var botonRegistro = document.getElementById("btn2");
+    botonRegistro.addEventListener("click", logueo, false);
+
+    var botonRegistro = document.getElementById("btn3");
+    botonRegistro.addEventListener("click", borrarRegistro, false);
+
+    var botonRegistro = document.getElementById("btn4");
+    botonRegistro.addEventListener("click", borrarTodo, false);
+
+    function logueo() {
+
+      var userlogueo = document.getElementById('inpt1').value;
+      var passwordLogueo = document.getElementById('inpt2').value;
+
+      var registroObjeto = localStorage.getItem("registrarse");
+
+      var registroCadenaRecuperada = JSON.parse(registroObjeto);
+
+      if (
+        registroCadenaRecuperada.usuario == userlogueo &&
+        registroCadenaRecuperada.clave == passwordLogueo
+      ) {
+        document.querySelector("#result").innerHTML = "superado logueo";
+
+
+        function viaje() {
+          window.location.assign("https://mauritiusattractions.com/mauritius-island-guide-i-83.html");
+        }
+        setInterval(viaje, 2000)
+
+      } else {
+        document.querySelector("#result").innerHTML = "suspendido logueo"
+
+      }
+
+    }
+
+    function borrarRegistro() {
+      localStorage.removeItem("registrarse");
+    }
+
+    function borrarTodo() {
+      localStorage.clear();
+    }
+  </script>
+</body>
+
+</html>
